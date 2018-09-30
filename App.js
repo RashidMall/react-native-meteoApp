@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Platform, TextInput, KeyboardAvoidingView } fro
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={[styles.largeText, styles.textStyle]}>
           Toulouse
         </Text>
@@ -21,7 +21,7 @@ export default class App extends React.Component {
           style = {styles.textInput}
           clearButtonMode = "always"
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
