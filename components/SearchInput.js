@@ -2,20 +2,45 @@ import React from 'react';
 import { StyleSheet, View, TextInput} from 'react-native';
 
 export default class SearchInput extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <TextInput 
-          autoCorrect = {false}
-          placeholder = {this.props.placeholder}
-          placeholderTextColor = "white"
-          underlineColorAndroid = "transparent"
-          style = {styles.textInput}
-          clearButtonMode = "always"
-        />
-      </View>
-    );
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+            text: '',
+        };
+    }
+    handleChangeText = (text) => {
+        this.setState({text: text});
+    };
+    handleSubmitEditing = () => {
+        const {onSubmit} = this.props;
+        const {text} = this.state;
+
+        if(!text) return; // if text is blank
+
+        onSubmit(text);
+        this.setState({text: ''}); // Clear the text property in state
+    }
+    
+    render() {
+        const {placeholder} = this.props;
+        const {text} = this.state;
+
+        return (
+        <View style={styles.container}>
+            <TextInput 
+            autoCorrect = {false}
+            value = {text}
+            placeholder = {placeholder}
+            placeholderTextColor = "white"
+            underlineColorAndroid = "transparent"
+            style = {styles.textInput}
+            clearButtonMode = "always"
+            onChangeText = {this.handleChangeText}
+            onSubmitEditing = {this.handleSubmitEditing}
+            />
+        </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
