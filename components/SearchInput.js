@@ -57,3 +57,12 @@ const styles = StyleSheet.create({
     color: 'white',
   }
 });
+
+SearchInput.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+};
+
+SearchInput.defaultProps = {
+    placeholder: '',
+};

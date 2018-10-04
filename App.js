@@ -62,18 +62,18 @@ export default class App extends React.Component {
       <KeyboardAvoidingView style={styles.container} behavior="padding">
         <StatusBar barStyle="light-content" />
         <ImageBackground
-          source={getImageForWeather('Clear')}
+          source={getImageForWeather(weather)}
           style={styles.imageContainer}
           imageStyle={styles.image}
         >
-          <View style={this.styles.detailsContainer}>
+          <View style={styles.detailsContainer}>
             <ActivityIndicator animating={loading} color="white" size="large" />
 
             {!loading && (
               <View>
                 {error && (
                   <Text style={[styles.smallText, styles.textStyle]}>
-                    Could not load weather, please try adifferent city.
+                    The weather for this city is not available.
                   </Text>
                 )}
 
@@ -85,7 +85,7 @@ export default class App extends React.Component {
                     <Text style={[styles.smallText, styles.textStyle]}>
                       {weather}
                     </Text>
-                    <Text>
+                    <Text style={[styles.largeText, styles.textStyle]}>
                       {`${Math.round(temperature)}°`}
                     </Text>
                   </View>
